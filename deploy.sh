@@ -20,10 +20,10 @@ PORT=$(docker inspect --format '{{ (index (index .NetworkSettings.Ports "80/tcp"
 printf "
 server {
  listen 80;
- #listen 443 ssl;
+ listen 443 ssl;
  server_name $APP_NAME.$DOMAIN s1.localhost;
- #ssl_certificate $CERTIFICATE;
- #ssl_certificate_key $CERTIFICATE_KEY;
+ ssl_certificate $CERTIFICATE;
+ ssl_certificate_key $CERTIFICATE_KEY;
  location /media { alias $ROOT_DIR/media;}
  location /static { alias $ROOT_DIR/static;}
  location / {proxy_pass http://127.0.0.1:$PORT;}
